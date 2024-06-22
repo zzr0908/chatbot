@@ -1,1 +1,9 @@
-wechaty~=0.10
+wechaty
+wechaty-plugin-contrib
+quart
+python-dotenv
+docker
+apscheduler
+dataclasses-json
+urllib3 == 1.26
+pymysql
