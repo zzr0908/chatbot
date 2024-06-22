@@ -28,5 +28,6 @@ class MyBot(Wechaty):
             await conversation.say(file_box)
 
 os.environ['TOKEN'] = "b750b55b-e5d7-4528-910e-40c97b70fe94"
-os.environ['endpoint'] = "47.99.194.244:3389"
+os.environ['endpoint'] = "127.0.0.1:8080"
 asyncio.run(MyBot().start())
+
