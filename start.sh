@@ -2,7 +2,7 @@ export WECHATY_LOG="verbose"
 export WECHATY_PUPPET="wechaty-puppet-padlocal"
 export WECHATY_PUPPET_PADLOCAL_TOKEN="puppet_padlocal_79e4a23ce72c4f58b88465d1c1f80d32"
 export WECHATY_PUPPET_SERVER_PORT="8080"
-export WECHATY_TOKEN="3bceb339-179c-49aa-b38d-2c70b919190c"
+export WECHATY_TOKEN="b66a85f2-60dd-419e-871e-846c29926865"
 sed -i s/token=.*/token=$WECHATY_TOKEN/g .env
 
 docker run -ti \
