@@ -1,7 +1,7 @@
 export WECHATY_LOG="verbose"
 export WECHATY_PUPPET="wechaty-puppet-padlocal"
 export WECHATY_PUPPET_PADLOCAL_TOKEN="puppet_padlocal_79e4a23ce72c4f58b88465d1c1f80d32"
-export WECHATY_PUPPET_SERVER_PORT="8080"
+export WECHATY_PUPPET_SERVER_PORT="3389"
 export WECHATY_TOKEN="b750b55b-e5d7-4528-910e-40c97b70fe94"
 sed -i s/token=.*/token=$WECHATY_TOKEN/g .env
 
