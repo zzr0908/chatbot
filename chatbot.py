@@ -1,11 +1,16 @@
+import asyncio, os
 from wechaty import Wechaty
 
-import asyncio
 
-async def main():
-    bot = Wechaty()
-    bot.on('scan', lambda status, qrcode, data: print('Scan QR Code to login: {}\nhttps://wechaty.wechaty.js/qrcode/{}'.format(status, qrcode)))
-    bot.on('login', lambda user: print('User {} logged in'.format(user)))
-    bot.on('message', lambda message: print('Message: {}'.format(message)))
-    await bot.start()
-asyncio.run(main())
+class MyBot(Wechaty):
+    async def on_message(self, msg):
+        from_contact = msg.talker()
+        text = msg.text()
+        room = msg.room()
+        if text == 'ding':
+            conversation = from_contact if room is None else room
+            await conversation.ready()
+            await conversation.say('dong')
+
+
+bot = MyBot()
