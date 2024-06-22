@@ -1,4 +1,4 @@
-import asyncio, os
+import asyncio
 from typing import List, Optional, Union
 
 from wechaty_puppet import FileBox  # type: ignore
@@ -27,10 +27,13 @@ class MyBot(Wechaty):
                 name='ding-dong.jpg')
             await conversation.say(file_box)
 
-os.environ['TOKEN'] = "f4a29b50-8e8b-4821-8dad-b85a1e99b0ec"
+import os
+os.environ['WECHATY_PUPPET_SERVICE_ENDPOINT'] = '127.0.0.1:8080'
 
 asyncio.run(MyBot().start())
-
-
+#
+#
 # import uuid
 # print(uuid.uuid4())
+
+
