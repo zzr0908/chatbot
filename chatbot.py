@@ -13,4 +13,5 @@ class MyBot(Wechaty):
             await conversation.say('dong')
 
 
+os.environ['TOKEN'] = "b750b55b-e5d7-4528-910e-40c97b70fe94"
 bot = MyBot()
