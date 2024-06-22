@@ -27,7 +27,7 @@ class MyBot(Wechaty):
                 name='ding-dong.jpg')
             await conversation.say(file_box)
 
-os.environ['TOKEN'] = "b750b55b-e5d7-4528-910e-40c97b70fe94"
+os.environ['TOKEN'] = "3bceb339-179c-49aa-b38d-2c70b919190c"
 
 asyncio.run(MyBot().start())
 
