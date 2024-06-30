@@ -1,39 +1,45 @@
-import asyncio
-from typing import List, Optional, Union
-
-from wechaty_puppet import FileBox  # type: ignore
-
-from wechaty import Wechaty, Contact
-from wechaty.user import Message, Room
-
-
-class MyBot(Wechaty):
-
-    async def on_message(self, msg: Message):
-        """
-        listen for message event
-        """
-        from_contact: Optional[Contact] = msg.talker()
-        text = msg.text()
-        room: Optional[Room] = msg.room()
-        if text == 'ding':
-            conversation: Union[
-                Room, Contact] = from_contact if room is None else room
-            await conversation.ready()
-            await conversation.say('dong')
-            file_box = FileBox.from_url(
-                'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/'
-                'u=1116676390,2305043183&fm=26&gp=0.jpg',
-                name='ding-dong.jpg')
-            await conversation.say(file_box)
-
+from flask import Flask, request
+import requests
+import json
+import random
+from openai import OpenAI
 import os
-os.environ['WECHATY_PUPPET_SERVICE_ENDPOINT'] = '127.0.0.1:8080'
 
-asyncio.run(MyBot().start())
-#
-#
-# import uuid
-# print(uuid.uuid4())
+app = Flask(__name__)
+key = "sk-b1cbb8207ef94ea58517d38392040eb7"
+
+
+@app.route('/')
+def hello_world():
+    return '在此输入apikey 样式:sk-s5S5BoV...'
+
+
+@app.route('/message',methods = ['POST'])
+def mess():  # put application's code here
+    message = request.json.get('msg')
+    api_key = "sk-b1cbb8207ef94ea58517d38392040eb7"
+    client = OpenAI(api_key=key, base_url="https://api.deepseek.com")
+    messages = [{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": message}]
+
+    response = client.chat.completions.create(
+        model="deepseek-chat",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant"},
+            {"role": "user", "content": "Hello"},
+        ],
+        stream=False
+    )
+
+    print(response)
+    # messages.append({"role": "assistant", "content": response["choices"][0]["message"].content})
+    res = {
+        "resmsg": response,
+        "code": 200
+    }
+    return res
+
+
+if __name__ == '__main__':
+    app.run(threaded=False,processes=5, host="0.0.0.0", port="8080")
 
 
